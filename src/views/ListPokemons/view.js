@@ -4,25 +4,15 @@ import '../styles.css'
 
 import Search from "@/components/Search"
 import Title from "@/components/Title";
-import { useGetPokemons } from './hooks/useGetPokemons';
-import GridPokemons from '@/components/GridPokemon';
+import usePokemons from './usePokemons';
+import GridPokemons from '@/components/Grid/Pokemons';
 
 const ViewListPokemons = () => {
-  const { pokemons: { data, isOk } } = useGetPokemons()
-
-  const onChange = (value) => {
-    console.log('value', value);
-  }
-  const onClick = () => {
-    console.log('click')
-  }
-
-
+  const { pokemons: { data, isOk }, setSearchPokemon, goPokemon } = usePokemons()
 
   return (
     <main className='page'>
-      <Search btnText="Buscar" onChange={onChange} onClick={onClick} />
-
+      <Search btnText="Buscar" onChange={setSearchPokemon} onClick={goPokemon} />
       {isOk && data.length > 0 &&
         <>
           <Title text="Listado de Pokemones" />

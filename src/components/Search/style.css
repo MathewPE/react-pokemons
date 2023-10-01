@@ -12,6 +12,7 @@
   font-size: 16px;
   border: 0;
   cursor: pointer;
+  color: #fff;
 }
 
 .search .searchBtn:hover {

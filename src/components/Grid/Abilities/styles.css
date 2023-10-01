@@ -1,0 +1,12 @@
+.gridabilites {
+  margin-bottom: 25px;
+}
+.gridabilites-title {
+  font-size: 30px;
+  margin: 20px 0;
+}
+.gridabilites .gridabilites-cards {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}

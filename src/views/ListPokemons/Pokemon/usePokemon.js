@@ -1,41 +1,41 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import baseUrl from '@/utils/urlApi'
 
-const useGetPokemon = ({ pokemon }) => {
+const usePokemon = ({ name }) => {
   const [pokemon, setPokemon] = useState({
-    habilities: [],
+    abilities: [],
     name: '',
     isOk: true,
+    isLoading: true,
   })
-  const getPokemonByName = () => {
-    if (pokemon) {
-      const api = baseUrl + pokemon;
+
+  useEffect(() => {
+    if (name) {
+      const api = baseUrl + '/' + name;
       fetch(api)
         .then(res => res.json())
         .then(res => {
-          const { habilities, name } = res;
-          const hasHabilities = habilities.length > 0;
+          const { abilities, name } = res;
           const isOk = true;
 
-          if (hasHabilities && name) {
+          const hasAbilities = abilities.length > 0;
+
+          if (hasAbilities && name) {
             return setPokemon((previous) => ({
               ...previous,
-              habilities,
+              abilities,
               name,
               isOk
             }))
           }
-          return setPokemon((previous) => ({
-            ...previous,
-            isOk
-          }))
+          return setPokemon((previous) => ({ ...previous, isOk }))
         })
         .catch((error) => {
           setPokemon((previous) => ({
             ...previous,
             isOk: false
           }))
-          return console.error(error);
+          return console.error('error', error);
         })
         .finally(() => {
           setPokemon((previous) => ({
@@ -44,11 +44,13 @@ const useGetPokemon = ({ pokemon }) => {
           }))
         })
     }
+  }, [])
 
-  }
+
+
   return {
-    getPokemonByName
+    pokemon,
   }
 }
 
-export default useGetPokemon
+export default usePokemon

@@ -1,7 +1,9 @@
-import baseUrl from "@/utils/urlApi";
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation'
+import baseUrl from "@/utils/urlApi";
 
-export const useGetPokemons = () => {
+const usePokemons = () => {
+  const [searchPokemon, setSearchPokemon] = useState('');
   const [pokemons, setPokemons] = useState({
     data: [],
     isOk: true,
@@ -45,7 +47,15 @@ export const useGetPokemons = () => {
       })
   }, [])
 
+  const router = useRouter()
+  const goPokemon = () => {
+    if (searchPokemon) {
+      router.push('/pokemon?name=' + searchPokemon)
+    }
+  }
+
   return {
-    pokemons
+    pokemons, setSearchPokemon, goPokemon
   }
 }
+export default usePokemons;

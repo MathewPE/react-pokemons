@@ -1,0 +1,19 @@
+.cardability {
+  padding: 10px;
+  border: 1px solid rgb(251, 241, 35);
+  background-color: rgb(251, 241, 35);
+  border-radius: 10px;
+  max-width: 180px;
+  width: 100%;
+  color: #000;
+}
+.cardability .cardability-name {
+  font-size: 22px;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.cardability .cardability-slot {
+  font-size: 18px;
+  margin: 0;
+}

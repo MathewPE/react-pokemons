@@ -1,11 +1,22 @@
-import { useSearchParams } from 'next/navigation';
 import '../../styles.css';
+
+import { useSearchParams } from 'next/navigation';
+import CardPokemonBig from '@/components/Card/Pokemon/Big';
+import useGetPokemon from './usePokemon';
 
 const ViewPokemon = () => {
   const searchParams = useSearchParams()
-  const pokemon = searchParams.get('name')
+  const name = searchParams.get('name')
+  const { pokemon } = useGetPokemon({ name });
+
   return (
-    <main className='page'>{JSON.stringify(pokemon)}</main>
+    <main className='page'>
+      {
+        pokemon.isOk && pokemon.isLoading === false
+          ? <CardPokemonBig name={pokemon.name} abilities={pokemon.abilities} />
+          : <h2 className='message-error'>No se encontró pokemón {name} </h2>
+      }
+    </main>
   )
 }
 
