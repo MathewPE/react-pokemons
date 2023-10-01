@@ -4,3 +4,6 @@
   margin: 30px auto;
   padding: 20px;
 }
+.page .message-error {
+  color: #fff;
+}
